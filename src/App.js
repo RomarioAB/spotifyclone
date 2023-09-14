@@ -3,7 +3,7 @@ import Login from './Login';
 
 function App() {
   return (
-    // BEM in order to name your class files
+    // BEM in order to name your class files.
     <div className="app">
       <Login/>
     </div>
