@@ -9,8 +9,7 @@ import { useDatatLayerValue } from './DataLayer';
 const spotify = new SpotifyWebApi();
 
 function App() {
-  const [token, setToken] = useState(null);
-  const [{}, dispatch] = useDatatLayerValue();
+  const [{ user, token }, dispatch] = useDatatLayerValue(); // dispatch action goes into the data layer, pulls user from it and reads it
 
   //Run code based on a given condition
   useEffect(() => {
@@ -19,17 +18,31 @@ function App() {
     const _token = hash.access_token;
 
     if (_token) {
-      setToken(_token);  //step 2: store access token in the state
+
+      dispatch({
+        type: "SET_TOKEN",
+        token: _token,
+      })
+       //step 2: store access token in the state
+
 
       spotify.setAccessToken(_token); //allows me to communicate between the spotify api and React 
       
       spotify.getMe().then(user => {
-        console.log("person", user);
+        dispatch({
+          type: 'SET_USER',
+          user: user,
+
+        })
       });
     }
 
     console.log('I HAVE A TOKEN >>>', token);  
   }, []);
+
+  console.log("person", user) //shows user's profile details on console log when logged in 
+  console.log("Token", token) //shows user's token on console log when logged in
+
 
   return (
     // BEM in order to name your class files...
