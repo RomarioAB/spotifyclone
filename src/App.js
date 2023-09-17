@@ -22,35 +22,23 @@ function App() {
       dispatch({
         type: "SET_TOKEN",
         token: _token,
-      })
+      });
        //step 2: store access token in the state
 
-
       spotify.setAccessToken(_token); //allows me to communicate between the spotify api and React 
-      
       spotify.getMe().then(user => {
         dispatch({
           type: 'SET_USER',
           user: user,
-
         })
       });
     }
-
-    console.log('I HAVE A TOKEN >>>', token);  
   }, []);
 
-  console.log("person", user) //shows user's profile details on console log when logged in 
-  console.log("Token", token) //shows user's token on console log when logged in
-
-
-  return (
+  
     // BEM in order to name your class files...
     // if there's token = render logged in message
-    <div className="app">{token ? 
-      <Player />
-      : <Login />}</div>
-  );
+  return <div className="app">{token ? <Player spotify={spotify} /> : <Login />}</div>;
 }
 
 export default App;
