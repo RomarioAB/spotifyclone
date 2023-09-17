@@ -12,5 +12,6 @@ import React,
             <DataLayerContext.Provider value={useReducer(reducer, initialState)}>
                 {children}
             </DataLayerContext.Provider>
+    );
 
-    )
+    export const useDatatLayerValue = () => useContext(DataLayerContext);
