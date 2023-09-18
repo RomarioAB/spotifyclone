@@ -4,12 +4,12 @@ import Login from './Login';
 import { getTokenFromUrl } from './spotify';
 import SpotifyWebApi from "spotify-web-api-js";
 import Player from './Player';
-import { useDatatLayerValue } from './DataLayer';
+import { useDataLayerValue } from './DataLayer';
 
 const spotify = new SpotifyWebApi();
 
 function App() {
-  const [{ user, token }, dispatch] = useDatatLayerValue(); // dispatch action goes into the data layer, pulls user from it and reads it
+  const [{ user, token }, dispatch] = useDataLayerValue(); // dispatch action goes into the data layer, pulls user from it and reads it
 
   //Run code based on a given condition
   useEffect(() => {
@@ -30,12 +30,18 @@ function App() {
         dispatch({
           type: 'SET_USER',
           user: user,
-        })
+        });
       });
+
+      spotify.getUserPlaylists().then((playlists) => {
+        dispatch({
+          type: "SET_PLAYLIST",
+          playlists: playlists,
+        })
+      })
     }
   }, []);
 
-  
     // BEM in order to name your class files...
     // if there's token = render logged in message
   return <div className="app">{token ? <Player spotify={spotify} /> : <Login />}</div>;

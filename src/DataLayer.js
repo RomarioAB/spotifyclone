@@ -14,4 +14,4 @@ import React,
             </DataLayerContext.Provider>
     );
 
-    export const useDatatLayerValue = () => useContext(DataLayerContext);
+    export const useDataLayerValue = () => useContext(DataLayerContext);
