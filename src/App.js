@@ -43,7 +43,7 @@ function App() {
       spotify.getPlaylist("37i9dQZEVXcGG19oLEM29B").then(response => 
         dispatch({
           type: "SET_DISCOVER_WEEKLY",
-          dicover_weekly: response,
+          discover_weekly: response,
         })
         );
     }
