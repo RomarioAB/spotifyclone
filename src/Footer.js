@@ -13,7 +13,11 @@ function Footer() {
   return (
     <div className="footer">
       <div className="footer__left">
-        <p>Album and song details</p>
+        <img className="footer__albumLogo" src="https://upload.wikimedia.org/wikipedia/en/9/9c/Drake_-_Thank_Me_Later_cover.jpg" alt=""/>
+        <div className="footer__songInfo">
+          <h4>Over</h4>
+          <p>Drake</p>
+        </div>
       </div>
 
       <div className="footer__center">
