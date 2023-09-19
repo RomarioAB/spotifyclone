@@ -45,7 +45,7 @@ function App() {
           type: "SET_DISCOVER_WEEKLY",
           dicover_weekly: response,
         })
-        )
+        );
     }
   }, []);
 
